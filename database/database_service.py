@@ -6,24 +6,22 @@ from .base import Base
 
 class DatabaseService:
 
-    def __init__(self, user, host, db_name):
-        self.db_name = db_name
-        self.url = 'mysql://{0}@{1}/{2}?charset=utf8'.format(
-            user, host, db_name)
+    def __init__(self, connection_string):
+        self.connection_string = connection_string
         self.create_connection()
         self.init_database()
 
     def create_connection(self):
         print('Creating connection...')
-        self.engine = create_engine(self.url)
+        self.engine = create_engine(self.connection_string)
 
     def init_database(self):
 
-        if not database_exists(self.url):
-            print('Creating database {0}...'.format(self.db_name))
+        if not database_exists(self.connection_string):
+            print('Creating database...')
             create_database(self.engine.url, encoding='utf8')
 
-        print('Initializing database {0}...'.format(self.db_name))
+        print('Initializing database...')
         Base.metadata.create_all(bind=self.engine)
         self.Session = sessionmaker(bind=self.engine)
 

@@ -24,6 +24,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@material-ui/core';
+import ItemActionButtons from '../../../Components/ItemActionButtons/ItemActionButtons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -158,18 +159,7 @@ export default function PostItem(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={props.liked}>
-          <FavoriteIcon color={post.is_liked ? 'primary' : 'action'} />
-        </IconButton>
-
-        {seenButton}
-
-        <IconButton onClick={() => window.open(post.original_url, '_blank')}>
-          <OpenInBrowser color="primary" />
-        </IconButton>
-        <IconButton onClick={showDescriptionHandler}>
-          <Description color="primary" />
-        </IconButton>
+        <ItemActionButtons data={post} />
       </CardActions>
     </Card>
   );

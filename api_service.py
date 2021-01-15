@@ -4,6 +4,7 @@ from database.database_service import DatabaseService
 from database.house_post import HousePost
 from flask_cors import CORS
 from sqlalchemy import inspect
+import os
 
 
 class ApiView(FlaskView):
@@ -25,7 +26,7 @@ class ApiView(FlaskView):
     def get_all(self, sort=''):
         filter_param = request.args.to_dict()
 
-        database = DatabaseService('root', 'localhost', 'house_scrapper')
+        database = DatabaseService(os.getenv('DATABASE_CONNECTOR'))
         session = database.get_session()
 
         filters = []
@@ -53,7 +54,7 @@ class ApiView(FlaskView):
     @route('/api/posts/<id>/liked')
     def change_like_status(self, id):
         print(id)
-        database = DatabaseService('root', 'localhost', 'house_scrapper')
+        database = DatabaseService(os.getenv('DATABASE_CONNECTOR'))
         session = database.get_session()
 
         post = session.query(HousePost).filter_by(
@@ -66,7 +67,7 @@ class ApiView(FlaskView):
     @route('/api/posts/<id>/seen')
     def change_seen_status(self, id):
         print(id)
-        database = DatabaseService('root', 'localhost', 'house_scrapper')
+        database = DatabaseService(os.getenv('DATABASE_CONNECTOR'))
         session = database.get_session()
 
         post = session.query(HousePost).filter_by(

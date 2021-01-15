@@ -16,6 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Dashboard, TableChart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
 
@@ -146,13 +147,13 @@ export default function SideNav(props) {
         </div>
         <Divider />
         <List>
-          <ListItem button key={0}>
+          <ListItem component={Link} to="/" button key={0}>
             <ListItemIcon className={classes.iconWidth}>
               <Dashboard />
             </ListItemIcon>
             <ListItemText primary={'Posts preview'} />
           </ListItem>
-          <ListItem button key={1}>
+          <ListItem component={Link} to="/list-table" button key={1}>
             <ListItemIcon className={classes.iconWidth}>
               <TableChart />
             </ListItemIcon>

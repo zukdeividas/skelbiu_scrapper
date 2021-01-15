@@ -52,7 +52,8 @@ def init_session():
     global session
     global api
     global api_thread
-    database = DatabaseService('root', 'localhost', 'house_scrapper')
+
+    database = DatabaseService(os.getenv('DATABASE_CONNECTOR'))
     session = database.get_session()
     api = ApiView().init()
     ApiView.register(api)
