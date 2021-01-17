@@ -58,10 +58,10 @@ def init_session():
     global session
     global api
     global api_thread
-    # this. Maybe sqlite would be sufficient or at least there could be some kind of abstraction for storage?
-    database=DatabaseService('root', 'localhost', 'house_scrapper')
-    session=database.get_session()
-    api=ApiView().init()
+
+    database = DatabaseService(os.getenv('DATABASE_CONNECTOR'))
+    session = database.get_session()
+    api = ApiView().init()
     ApiView.register(api)
     api_thread=threading.Thread(target=api.run).start()
 

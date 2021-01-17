@@ -8,8 +8,8 @@
 # testing
 /coverage
 
-# production
-/build
+# production (track changes because python uses FE build)
+# /build 
 
 # misc
 .DS_Store

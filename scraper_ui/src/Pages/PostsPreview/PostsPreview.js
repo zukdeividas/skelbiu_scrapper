@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: 20,
+    paddingTop: 50,
     flexGrow: 1,
   },
 }));
@@ -88,7 +88,7 @@ export default function PostsPreview() {
     : 'Loading...';
 
   return (
-    <div>
+    <div className={classes.root}>
       <FormControlLabel
         value="end"
         control={
@@ -114,7 +114,7 @@ export default function PostsPreview() {
         label="Filter new posts"
       />
 
-      <Grid container className={classes.root} spacing={2} justify="center">
+      <Grid container spacing={2} justify="center">
         {listItems}
       </Grid>
     </div>
