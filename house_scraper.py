@@ -8,8 +8,8 @@ from database.house_post import HousePost
 
 
 class HouseScraper:
-
-    get_url = 'https://www.skelbiu.lt/skelbimai/{}?autocompleted=1&keywords=&cost_min=&cost_max=70000&space_min=80&space_max=&rooms_min=3&rooms_max=&building_type=0&year_min=&year_max=&status=0&building=0&price_per_unit_min=&price_per_unit_max=&district=0&quarter=0&streets=0&ignorestreets=0&cities=516%2C465%2C466%2C542%2C562%2C491%2C504&distance=0&mainCity=1&search=1&category_id=42&type=0&user_type=0&ad_since_min=0&ad_since_max=0&visited_page={}&orderBy=-1&detailsSearch=1'
+    def __init__(self, url):
+        self.get_url = url
 
     def get_page_count(self):
         res = requests.get(self.get_url.format(1, 1))
